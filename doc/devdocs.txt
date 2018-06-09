@@ -1,0 +1,159 @@
+*devdocs.txt*
+
+
+                VIM-DEVDOCS DOCUMENTATION by Romain Lafourcade
+
+
+                                                                      *devdocs*
+                                                                  *vim-devdocs*
+Help on using vim-devdocs
+
+    1. Introduction ............................. |devdocs-intro|
+    2. Installation ............................. |devdocs-installation|
+    3. Configuration ............................ |devdocs-configuration|
+    4. Usage .................................... |devdocs-usage|
+    5. TODO ..................................... |devdocs-todo|
+    6. DONE ..................................... |devdocs-done|
+    7. Releases ................................. |devdocs-releases|
+
+==============================================================================
+ 1. Introduction                                                *devdocs-intro*
+
+Vim-devdocs is a very small and trivial plugin with a laser-focused purpose:
+making it possible to look up keywords on `https://devdocs.io` from Vim.
+
+It does so by providing a single command, |:DD|, that will figure out the
+current filetype and point your default browser to the web app with the
+correct query.
+
+Even better, |:DD| can be used under the hood by the built-in |K| for maximum
+Vimmy-ness. See |devdocs-K| below.
+
+Vim-devdocs started its life in my config as an experimental snippet circa
+2016, then became a clean and reusable Gist in mid-2017, which I decided to
+weaponize one year later. If you think a plugin should not be needed for such
+a trivial feature be reassured that I totally share that view. If you feel
+remix-y, the original (but regularly updated) Gist is still up in all its
+12LOC glory:
+
+    `https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987`
+
+NOTE: vim-devdocs is not affiliated in any way with `devdocs.io` so any
+request pertaining to that site should be directed to its operators.
+
+==============================================================================
+ 2. Installation                                         *devdocs-installation*
+
+Use your favorite plugin manager or dump the files below in their standard
+location:
+
+on Unix-like systems... >
+
+    ~/.vim/autoload/devdocs.vim
+    ~/.vim/doc/devdocs.txt
+    ~/.vim/plugin/devdocs.vim
+<
+on Windows... >
+
+    %userprofile%\vimfiles\autoload\devdocs.vim
+    %userprofile%\vimfiles\doc\devdocs.txt
+    %userprofile%\vimfiles\plugin\devdocs.vim
+<
+If you go with the manual method, don't forget to execute the following
+command to make the documentation globally available:
+
+on Unix-like systems... >
+
+    :helptags ~/.vim/doc
+<
+on Windows... >
+
+    :helptags %userprofile%\vimfiles\doc
+<
+==============================================================================
+ 3. Configuration                                       *devdocs-configuration*
+
+Option(s):
+
+    g:devdocs_enable_scoping .................... |'g:devdocs_enable_scoping'|
+
+------------------------------------------------------------------------------
+                                                   *'g:devdocs_enable_scoping'*
+Value: numeric                                                               ~
+Default: 1                                                                   ~
+
+Enable or disable automatic scoping.
+
+Add the line below to your vimrc to disable this feature: >
+
+    let g:devdocs_enable_scoping = 0
+<
+==============================================================================
+ 4. Usage                                                       *devdocs-usage*
+
+                                                                          *:DD*
+                                                                   *devdocs-DD*
+:DD[!] [filetype] [keyword]
+
+    Without [!], [filetype], or [keyword], look up the keyword under the
+    cursor, scoped with the current filetype.
+    For example, with the cursor on `FuncLit` in a Go buffer: >
+
+    :DD
+<
+    would resolve to `https://devdocs.io/go/go/ast/index#FuncLit` in your
+    default browser. With [!], don't do any automatic scoping.
+
+    Without [!] or [filetype], look up [keyword], scoped with the current
+    filetype.
+    For example, if the active buffer is a JavaScript buffer: >
+
+    :DD Map
+<
+    would resolve to `https://devdocs.io/javascript/global_objects/map` in
+    your default browser. With [!], don't do any automatic scoping.
+
+    With or without [!], look up [keyword], scoped with [filetype].
+    For example, no matter what's the filetype of the current buffer: >
+
+    :DD scss @mixin
+<
+    would resolve to `https://devdocs.io/sass/index#mixin` in your default
+    browser.
+
+------------------------------------------------------------------------------
+                                                                    *devdocs-K*
+                                                           *devdocs-keywordprg*
+
+Vim comes with the built-in and often overlooked |K|, a normal mode command
+that looks up the keyword under the cursor with the external command or Ex
+command set via the |'keywordprg'| option. |:DD| being a pretty basic Ex
+command it is easy to use it for |K|.
+
+If you want |K| to ALWAYS use |:DD|, put this line in your vimrc: >
+
+    set keywordprg=:DD
+<
+If you want |K| to use |:DD| ONLY for certain filetypes, put this line in the
+appropriate `after/ftplugin/<filetype>.vim`: >
+
+    setlocal keywordprg=:DD
+<
+==============================================================================
+ 5. Todo                                                         *devdocs-todo*
+
+    - Sit back and relax.
+
+==============================================================================
+ 6. Done                                                         *devdocs-done*
+
+    - All done.
+
+==============================================================================
+ 7. Releases                                                 *devdocs-releases*
+
+    1.0.0: Andy Montañez ..................................... 09 Jun 2018
+
+        First version.
+
+ vim:tw=78:ts=8:ft=help:norl:
