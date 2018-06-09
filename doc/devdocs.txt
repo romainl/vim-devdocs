@@ -34,7 +34,7 @@ Vim-devdocs started its life in my config as an experimental snippet circa
 weaponize one year later. If you think a plugin should not be needed for such
 a trivial feature be reassured that I totally share that view. If you feel
 remix-y, the original (but regularly updated) Gist is still up in all its
-12LOC glory:
+13LOC glory:
 
     `https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987`
 
