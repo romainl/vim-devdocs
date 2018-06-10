@@ -4,7 +4,7 @@ Look up keywords on [https://devdocs.io](https://devdocs.io) from Vim.
 
 ## Introduction
 
-Vim-devdocs is a very small and trivial plugin with a laser-focused purpose: making it possible to look up keywords on [https://devdocs.io](https://devdocs.io)from Vim.
+Vim-devdocs is a very small and trivial plugin with a laser-focused purpose: making it possible to look up keywords on [https://devdocs.io](https://devdocs.io) from Vim.
 
 It does so by providing a single command, `:DD`, that will figure out the current filetype and point your default browser to the web app with the correct query.
 
