@@ -1,8 +1,16 @@
-" What command to use on what system
-let s:cmds = {"DARWIN": "open", "LINUX": "xdg-open", "WINDOWS": "explorer"}
+" What command to use
+function! Cmd() abort
+    if executable("open")
+        return "open"
+    endif
+    if executable("xdg-open")
+        return "xdg-open"
+    endif
+    return "explorer"
+endfunction
 
 " Build the URL stub
-let s:stub = s:cmds[devdocs#Get_env()] . " 'https://devdocs.io/?q="
+let s:stub = Cmd() . " 'https://devdocs.io/?q="
 
 " Build the command
 command! -bang -nargs=* DD silent! call system(len(split(<q-args>, ' ')) == 0 ?

@@ -20,13 +20,11 @@ Use your favorite plugin manager or dump the files below in their standard locat
 
 on Unix-like systems…
 
-    ~/.vim/autoload/devdocs.vim
     ~/.vim/doc/devdocs.txt
     ~/.vim/plugin/devdocs.vim
 
 on Windows…
 
-    %userprofile%\vimfiles\autoload\devdocs.vim
     %userprofile%\vimfiles\doc\devdocs.txt
     %userprofile%\vimfiles\plugin\devdocs.vim
 
