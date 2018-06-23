@@ -1,16 +1,19 @@
 " What command to use
-function! Cmd() abort
-    if executable("open")
-        return "open"
-    endif
+function! s:Cmd() abort
+    " Linux
     if executable("xdg-open")
         return "xdg-open"
     endif
+    " Mac OS X
+    if executable("open")
+        return "open"
+    endif
+    " Windows
     return "explorer"
 endfunction
 
 " Build the URL stub
-let s:stub = Cmd() . " 'https://devdocs.io/?q="
+let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . " 'https://devdocs.io/?q="
 
 " Build the command
 command! -bang -nargs=* DD silent! call system(len(split(<q-args>, ' ')) == 0 ?
