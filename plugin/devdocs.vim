@@ -28,7 +28,7 @@ function! s:Cmd() abort
 endfunction
 
 " Build the URL stub
-let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . " 'https://devdocs.io/?q="
+let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . " 'https://devdocs.io/#q="
 
 " Build the command
 command! -bang -nargs=* DD silent! call system(len(split(<q-args>, ' ')) == 0 ?
