@@ -99,7 +99,7 @@ Add the line below to your vimrc to disable this feature: >
 
     :DD
 <
-    would resolve to `https://devdocs.io/go/go/ast/index#FuncLit` in your
+    would resolve to `https://devdocs.io/go/ast/index#FuncLit` in your
     default browser. With [!], don't do any automatic scoping.
 
     Without [!] or [filetype], look up [keyword], scoped with the current
