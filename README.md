@@ -10,6 +10,14 @@ It does so by providing a single command, `:DD`, that will figure out the curren
 
 Even better, `:DD` can be used under the hood by the built-in `K` for maximum street credibility.
 
+To work its magic, vim-devdocs depends on:
+
+* `xdg-open` on Linux and BSD, part of the `xdg-utils` package,
+* `open` on MacOS, it's installed by default,
+* `explorer` on Windows, it's also installed by default,
+
+but you can tell it to use any external command with `'g:devdocs_open_command'`.
+
 Vim-devdocs started its life in my config as an experimental snippet circa 2016, then became a clean and reusable Gist in mid-2017, which I decided to weaponize one year later. If you think a plugin should not be needed for such a trivial feature be reassured that I totally share that view. If you feel remix-y, [the original (but regularly updated) Gist](https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987) is still up in all its 13LOC glory.
 
 NOTE: vim-devdocs is not affiliated in any way with [https://devdocs.io](https://devdocs.io) so any request pertaining to that site should be directed to its operators.

@@ -27,7 +27,15 @@ current filetype and point your default browser to the web app with the
 correct query.
 
 Even better, |:DD| can be used under the hood by the built-in |K| for maximum
-Vimmy-ness. See |devdocs-K| below.
+street credibility. See |devdocs-K| below.
+
+To work its magic, vim-devdocs depends on:
+
+    * `xdg-open` on Linux and BSD, part of the `xdg-utils` package,
+    * `open` on MacOS, it's installed by default,
+    * `explorer` on Windows, it's also installed by default,
+
+but you can tell it to use any external command with |g:devdocs_open_command|.
 
 Vim-devdocs started its life in my config as an experimental snippet circa
 2016, then became a clean and reusable Gist in mid-2017, which I decided to
@@ -71,9 +79,10 @@ on Windows... >
 ==============================================================================
  3. Configuration                                       *devdocs-configuration*
 
-Option(s):
+Options:
 
     g:devdocs_enable_scoping .................... |'g:devdocs_enable_scoping'|
+    g:devdocs_open_command ...................... |'g:devdocs_open_command|
 
 ------------------------------------------------------------------------------
                                                    *'g:devdocs_enable_scoping'*
@@ -86,6 +95,22 @@ Add the line below to your vimrc to disable this feature: >
 
     let g:devdocs_enable_scoping = 0
 <
+
+------------------------------------------------------------------------------
+                                                     *'g:devdocs_open_command'*
+Value: string                                                               ~
+Default: none                                                                   ~
+
+Tell vim-devdocs what command to use to open the documentation.
+
+By default, vim-devdocs will try to use `xdg-open` (common on Linux and BSD,
+part of the `xdg-utils` package) first, then `open` (MacOS), then `explorer`
+(Windows), and finally fail silently if none of that command is found.
+
+Add the line below to your vimrc to tell vim-devdocs to use `my-command`: >
+
+    let g:devdocs_open_command = my-command
+<
 ==============================================================================
  4. Usage                                                       *devdocs-usage*
 
@@ -93,31 +118,38 @@ Add the line below to your vimrc to disable this feature: >
                                                                    *devdocs-DD*
 :DD[!] [filetype] [keyword]
 
-    Without [!], [filetype], or [keyword], look up the keyword under the
-    cursor, scoped with the current filetype.
-    For example, with the cursor on `FuncLit` in a Go buffer: >
+    1. Without [!], [filetype], or [keyword], look up the keyword under the
+       cursor, scoped with the current filetype.
 
-    :DD
+       For example, with the cursor on `FuncLit` in a Go buffer: >
+
+       :DD
 <
-    would resolve to `https://devdocs.io/go/ast/index#FuncLit` in your
-    default browser. With [!], don't do any automatic scoping.
+       would resolve to `https://devdocs.io/go/ast/index#FuncLit` in your
+       default browser.
+       
+       With [!], don't do any automatic scoping.
 
-    Without [!] or [filetype], look up [keyword], scoped with the current
-    filetype.
-    For example, if the active buffer is a JavaScript buffer: >
+    2. Without [!] or [filetype], look up [keyword], scoped with the current
+       filetype.
 
-    :DD Map
+       For example, if the active buffer is a JavaScript buffer: >
+
+       :DD Map
 <
-    would resolve to `https://devdocs.io/javascript/global_objects/map` in
-    your default browser. With [!], don't do any automatic scoping.
+       would resolve to `https://devdocs.io/javascript/global_objects/map` in
+       your default browser.
 
-    With or without [!], look up [keyword], scoped with [filetype].
-    For example, no matter what's the filetype of the current buffer: >
+       With [!], don't do any automatic scoping.
 
-    :DD scss @mixin
+    3. With or without [!], look up [keyword], scoped with [filetype].
+
+       For example, no matter what's the filetype of the current buffer: >
+
+       :DD scss @mixin
 <
-    would resolve to `https://devdocs.io/sass/index#mixin` in your default
-    browser.
+       would resolve to `https://devdocs.io/sass/index#mixin` in your default
+       browser.
 
 ------------------------------------------------------------------------------
                                                                     *devdocs-K*
@@ -126,7 +158,7 @@ Add the line below to your vimrc to disable this feature: >
 Vim comes with the built-in and often overlooked |K|, a normal mode command
 that looks up the keyword under the cursor with the external command or Ex
 command set via the |'keywordprg'| option. |:DD| being a pretty basic Ex
-command it is easy to use it for |K|.
+command it is easy and strongly recommended to use it for |K|.
 
 If you want |K| to ALWAYS use |:DD|, put this line in your vimrc: >
 
