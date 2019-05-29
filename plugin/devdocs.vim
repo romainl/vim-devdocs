@@ -28,18 +28,19 @@ function! s:Cmd() abort
 endfunction
 
 " Build the URL stub
-let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . " 'https://devdocs.io/#q="
+let s:URL = "https://devdocs.io/#q="
+let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . ' '
 
 " Build the full URL
 function! s:DD(args, ...) abort
     let query = ""
 
     if len(split(a:args, " ")) == 0
-        let query = s:stub . (a:1 == "!" || get(g:, "devdocs_enable_scoping", 0) == 1 ? '' : &filetype . "%20") . expand("<cword>") . "'"
+        let query = s:stub . shellescape(s:URL . (a:1 == "!" || get(g:, "devdocs_enable_scoping", 0) == 1 ? '' : &filetype . "%20") . expand("<cword>"))
     elseif len(split(a:args, " ")) == 1
-        let query = s:stub . (a:1 == "!" || get(g:, "devdocs_enable_scoping", 0) == 1 ? '' : &filetype . "%20") . a:args . "'"
+        let query = s:stub . shellescape(s:URL . (a:1 == "!" || get(g:, "devdocs_enable_scoping", 0) == 1 ? '' : &filetype . "%20") . a:args)
     else
-        let query = s:stub . substitute(a:args, '\s\+', '%20', 'g') . "'"
+        let query = s:stub . shellescape(s:URL .substitute(a:args, '\s\+', '%20', 'g'))
     endif
 
     return query
