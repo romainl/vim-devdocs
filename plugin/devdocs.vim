@@ -15,16 +15,16 @@ set cpo&vim
 
 " What command to use
 function! s:Cmd() abort
+    " Windows (and WSL)
+    if executable('cmd.exe')
+        return "cmd.exe /c start /b"
     " Linux/BSD
-    if executable("xdg-open")
+    elseif executable("xdg-open")
         return "xdg-open"
-    endif
     " MacOS
-    if executable("open")
+    elseif executable("open")
         return "open"
     endif
-    " Windows
-    return "explorer"
 endfunction
 
 " Build the URL stub
