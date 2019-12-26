@@ -14,7 +14,7 @@ To work its magic, vim-devdocs depends on:
 
 * `xdg-open` on Linux and BSD, part of the `xdg-utils` package,
 * `open` on MacOS, it's installed by default,
-* `explorer` on Windows, it's also installed by default,
+* `cmd.exe` on Windows, it's also installed by default,
 
 but you can tell it to use any external command with `'g:devdocs_open_command'`.
 
