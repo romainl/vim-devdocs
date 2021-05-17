@@ -31,9 +31,10 @@ street credibility. See |devdocs-K| below.
 
 To work its magic, vim-devdocs depends on:
 
-    * `xdg-open` on Linux and BSD, part of the `xdg-utils` package,
-    * `open` on MacOS, it's installed by default,
-    * `explorer` on Windows, it's also installed by default,
+    * `xdg-open` on various Unix-like systems, part of the `xdg-utils` package,
+    * `open` on MacOS, it is installed by default,
+    * `cmd.exe` on WSL, it is also installed by default,
+    * `explorer` on Windows, it is also installed by default,
 
 but you can tell it to use any external command with |g:devdocs_open_command|.
 
@@ -41,8 +42,7 @@ Vim-devdocs started its life in my config as an experimental snippet circa
 2016, then became a clean and reusable Gist in mid-2017, which I decided to
 weaponize one year later. If you think a plugin should not be needed for such
 a trivial feature be reassured that I totally share that view. If you feel
-remix-y, the original (but regularly updated) Gist is still up in all its
-13LOC glory:
+remix-y, the original Gist is still up in all its 13LOC glory:
 
     `https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987`
 
@@ -52,29 +52,27 @@ request pertaining to that site should be directed to its operators.
 ==============================================================================
  2. Installation                                         *devdocs-installation*
 
-Use your favorite plugin manager or dump the files below in their standard
-location:
+Method 1, use your favorite runtimepath/plugin manager.
 
-on Unix-like systems... >
+Method 2, if you are using Vim 8.0 or above, move this directory to:
+>
+    # Unix-like systems
+    ~/.vim/pack/{whatever name you want}/start/vim-devdocs
 
+    # Windows
+    %userprofile%\vimfiles\pack\{whatever name you want}\start\vim-devdocs
+<
+See |package|.
+
+Method 3, if you are using Vim 7.4, move the files in this directory to their standard location:
+>
+    # Unix-like systems
     ~/.vim/doc/devdocs.txt
     ~/.vim/plugin/devdocs.vim
-<
-on Windows... >
 
+    # Windows
     %userprofile%\vimfiles\doc\devdocs.txt
     %userprofile%\vimfiles\plugin\devdocs.vim
-<
-If you go with the manual method, don't forget to execute the following
-command to make the documentation globally available:
-
-on Unix-like systems... >
-
-    :helptags ~/.vim/doc
-<
-on Windows... >
-
-    :helptags %userprofile%\vimfiles\doc
 <
 ==============================================================================
  3. Configuration                                       *devdocs-configuration*
@@ -82,10 +80,10 @@ on Windows... >
 Options:
 
     g:devdocs_enable_scoping .................... |'g:devdocs_enable_scoping'|
-    g:devdocs_open_command ...................... |'g:devdocs_open_command|
+    g:devdocs_open_command ...................... |'g:devdocs_open_command'|
 
 ------------------------------------------------------------------------------
-                                                   *'g:devdocs_enable_scoping'*
+                                                     *g:devdocs_enable_scoping*
 Value: numeric                                                               ~
 Default: 1                                                                   ~
 
@@ -95,21 +93,16 @@ Add the line below to your vimrc to disable this feature: >
 
     let g:devdocs_enable_scoping = 0
 <
-
 ------------------------------------------------------------------------------
-                                                     *'g:devdocs_open_command'*
+                                                       *g:devdocs_open_command*
 Value: string                                                               ~
 Default: none                                                                   ~
 
 Tell vim-devdocs what command to use to open the documentation.
 
-By default, vim-devdocs will try to use `xdg-open` (common on Linux and BSD,
-part of the `xdg-utils` package) first, then `open` (MacOS), then `explorer`
-(Windows), and finally fail silently if none of that command is found.
-
 Add the line below to your vimrc to tell vim-devdocs to use `my-command`: >
 
-    let g:devdocs_open_command = my-command
+    let g:devdocs_open_command = "my-command"
 <
 ==============================================================================
  4. Usage                                                       *devdocs-usage*
@@ -127,7 +120,7 @@ Add the line below to your vimrc to tell vim-devdocs to use `my-command`: >
 <
        would resolve to `https://devdocs.io/go/ast/index#FuncLit` in your
        default browser.
-       
+
        With [!], don't do any automatic scoping.
 
     2. Without [!] or [filetype], look up [keyword], scoped with the current

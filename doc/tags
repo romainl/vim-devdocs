@@ -1,0 +1,16 @@
+:DD	devdocs.txt	/*:DD*
+devdocs	devdocs.txt	/*devdocs*
+devdocs-DD	devdocs.txt	/*devdocs-DD*
+devdocs-K	devdocs.txt	/*devdocs-K*
+devdocs-configuration	devdocs.txt	/*devdocs-configuration*
+devdocs-done	devdocs.txt	/*devdocs-done*
+devdocs-installation	devdocs.txt	/*devdocs-installation*
+devdocs-intro	devdocs.txt	/*devdocs-intro*
+devdocs-keywordprg	devdocs.txt	/*devdocs-keywordprg*
+devdocs-releases	devdocs.txt	/*devdocs-releases*
+devdocs-todo	devdocs.txt	/*devdocs-todo*
+devdocs-usage	devdocs.txt	/*devdocs-usage*
+devdocs.txt	devdocs.txt	/*devdocs.txt*
+g:devdocs_enable_scoping	devdocs.txt	/*g:devdocs_enable_scoping*
+g:devdocs_open_command	devdocs.txt	/*g:devdocs_open_command*
+vim-devdocs	devdocs.txt	/*vim-devdocs*

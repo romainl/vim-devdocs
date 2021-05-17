@@ -4,7 +4,7 @@ Look up keywords on [https://devdocs.io](https://devdocs.io) from Vim.
 
 ## Introduction
 
-Vim-devdocs is a very small and trivial plugin with a laser-focused purpose: making it possible to look up keywords on [https://devdocs.io](https://devdocs.io) from Vim.
+Vim-devdocs is a very small and trivial plugin with a laser-focused purpose: looking up keywords on [https://devdocs.io](https://devdocs.io) from Vim.
 
 It does so by providing a single command, `:DD`, that will figure out the current filetype and point your default browser to the web app with the correct query.
 
@@ -12,45 +12,64 @@ Even better, `:DD` can be used under the hood by the built-in `K` for maximum st
 
 To work its magic, vim-devdocs depends on:
 
-* `xdg-open` on Linux and BSD, part of the `xdg-utils` package,
-* `open` on MacOS, it's installed by default,
-* `cmd.exe` on Windows, it's also installed by default,
+* `xdg-open` on various Unix-like systems, part of the `xdg-utils` package,
+* `open` on MacOS, it is installed by default,
+* `cmd.exe` on WSL, it is also installed by default,
+* `explorer` on Windows, it is also installed by default,
 
 but you can tell it to use any external command with `'g:devdocs_open_command'`.
 
-Vim-devdocs started its life in my config as an experimental snippet circa 2016, then became a clean and reusable Gist in mid-2017, which I decided to weaponize one year later. If you think a plugin should not be needed for such a trivial feature be reassured that I totally share that view. If you feel remix-y, [the original (but regularly updated) Gist](https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987) is still up in all its 13LOC glory.
+## Background
+
+Vim-devdocs started its life in my config as an experimental snippet circa 2016, then became a clean and reusable Gist in mid-2017, which I decided to weaponize one year later. If you think a plugin should not be needed for such a trivial feature be reassured that I totally share that view. If you feel remix-y, [the original Gist](https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987) is still up in all its 13LOC glory.
 
 NOTE: vim-devdocs is not affiliated in any way with [https://devdocs.io](https://devdocs.io) so any request pertaining to that site should be directed to its operators.
 
 ## Installation
 
-Use your favorite plugin manager or dump the files below in their standard location:
+ Method 1
 
-on Unix-like systems…
+Use your favorite runtimepath/plugin manager.
 
+### Method 2
+
+If you are using Vim 8.0 or above, move this directory to:
+
+    # Unix-like systems
+    ~/.vim/pack/{whatever name you want}/start/vim-devdocs
+
+    # Windows
+    %userprofile%\vimfiles\pack\{whatever name you want}\start\vim-devdocs
+
+See `:help package`.
+
+### Method 3
+
+If you are using Vim 7.4, move the files in this directory to their standard location:
+
+    # Unix-like systems
     ~/.vim/doc/devdocs.txt
     ~/.vim/plugin/devdocs.vim
 
-on Windows…
-
+    # Windows
     %userprofile%\vimfiles\doc\devdocs.txt
     %userprofile%\vimfiles\plugin\devdocs.vim
 
-If you go with the manual method, don't forget to execute the following command to make the documentation globally available:
+## Documentation
 
-on Unix-like systems…
+You can use this command to get help on vim-devdocs:
 
-    :helptags ~/.vim/doc
-
-on Windows…
-
-    :helptags %userprofile%\vimfiles\doc
+    :help vim-devdocs
 
 ## Configuration
 
 Add the line below to your vimrc if you want to disable automatic filetype scoping:
 
     let g:devdocs_enable_scoping = 0
+
+Add the line below to your `vimrc` if you want to use a different "opener" tahn the default one:
+
+    let g:devdocs_open_command = "my-command"
 
 ## Usage
 
