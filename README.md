@@ -27,7 +27,7 @@ NOTE: vim-devdocs is not affiliated in any way with [https://devdocs.io](https:/
 
 ## Installation
 
- Method 1
+### Method 1
 
 Use your favorite runtimepath/plugin manager.
 
