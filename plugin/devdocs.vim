@@ -15,9 +15,12 @@ set cpo&vim
 
 " What command to use
 function! s:Cmd() abort
-    " Windows (and WSL)
-    if executable('cmd.exe')
+    " Windows WSL
+    if exists("$WSLENV")
         return "cmd.exe /c start /b"
+    " Windows
+    elseif executable('cmd.exe')
+        return "start /b explorer"
     " Linux/BSD
     elseif executable("xdg-open")
         return "xdg-open"
@@ -29,7 +32,7 @@ endfunction
 
 " Build the URL stub
 let s:URL = "https://devdocs.io/#q="
-let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . ' '
+let s:stub = get(g:, "devdocs_open_command", <SID>Cmd()) . " "
 
 " Build the full URL
 function! s:DD(args, ...) abort
@@ -40,7 +43,7 @@ function! s:DD(args, ...) abort
     elseif len(split(a:args, " ")) == 1
         let query = s:stub . shellescape(s:URL . (a:1 == "!" || get(g:, "devdocs_enable_scoping", 0) == 1 ? '' : &filetype . "%20") . a:args)
     else
-        let query = s:stub . shellescape(s:URL .substitute(a:args, '\s\+', '%20', 'g'))
+        let query = s:stub . shellescape(s:URL . substitute(a:args, '\s\+', '%20', 'g'))
     endif
 
     return query
