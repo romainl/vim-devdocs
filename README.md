@@ -67,7 +67,7 @@ Add the line below to your vimrc if you want to disable automatic filetype scopi
 
     let g:devdocs_enable_scoping = 0
 
-Add the line below to your `vimrc` if you want to use a different "opener" tahn the default one:
+Add the line below to your `vimrc` if you want to use a different "opener" than the default one:
 
     let g:devdocs_open_command = "my-command"
 
