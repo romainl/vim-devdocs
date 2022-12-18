@@ -19,11 +19,19 @@ To work its magic, vim-devdocs depends on:
 
 but you can tell it to use any external command with `'g:devdocs_open_command'`.
 
+Whether you use one of the standard commands above or a custom one, it is expected to handle URLs of the form:
+
+    https://devdocs.io/#q=javascript%20proxy
+
+Out of the box, the standard commands handle that URL by opening your default Web browser, which is the nominal, expected behavior.
+
 ## Background
 
 Vim-devdocs started its life in my config as an experimental snippet circa 2016, then became a clean and reusable Gist in mid-2017, which I decided to weaponize one year later. If you think a plugin should not be needed for such a trivial feature be reassured that I totally share that view. If you feel remix-y, [the original Gist](https://gist.github.com/romainl/8d3b73428b4366f75a19be2dad2f0987) is still up in all its 13LOC glory.
 
 NOTE: vim-devdocs is not affiliated in any way with [https://devdocs.io](https://devdocs.io) so any request pertaining to that site should be directed to its operators.
+
+NOTE: vim-devdocs relies entirely on the underlying command (see above) for the handling of the constructed URL. If, somehow, it doesn't behave as expected, refer to its documentation and/or use its official support channels.
 
 ## Installation
 
@@ -45,7 +53,7 @@ See `:help package`.
 
 ### Method 3
 
-If you are using Vim 7.4, move the files in this directory to their standard location:
+If you are using Vim 7.4 without a runtimepath/plugin manager, move the files in this directory to their standard location:
 
     # Unix-like systems
     ~/.vim/doc/devdocs.txt
@@ -54,6 +62,10 @@ If you are using Vim 7.4, move the files in this directory to their standard loc
     # Windows
     %userprofile%\vimfiles\doc\devdocs.txt
     %userprofile%\vimfiles\plugin\devdocs.vim
+
+and make Vim aware of the plugin's documentation with:
+
+    :helptags ALL
 
 ## Documentation
 
